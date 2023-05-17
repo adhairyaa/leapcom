@@ -3,6 +3,16 @@
   top: 0;
   width: 100vw;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   z-index: 99;
+  align-items: center;
+  padding-right: 90px;
+  background-color: white;
+  height: 50px;
+}
+
+.navbar-logo {
+  font-size: 1.2em;
+  color: #1e0e62;
+  font-weight: 700;
 }

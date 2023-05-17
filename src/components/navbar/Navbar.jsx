@@ -4,7 +4,7 @@ function Navbar() {
   return (
     <div className="navbar">
       <div className="navbar-logo">leapcom</div>
-      <button>cart</button>
+      <i class="fa-solid fa-cart-shopping"></i>
     </div>
   );
 }
