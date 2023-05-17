@@ -1,0 +1,45 @@
+.home-hero-img {
+  /* width: 90%;
+  height: 700px;
+  object-fit: cover;
+  object-position: right; */
+  max-inline-size: 100%;
+  block-size: auto;
+  aspect-ratio: 2/1;
+  object-fit: cover;
+  width: 90%;
+  height: 700px;
+}
+.home-hero {
+  position: relative;
+  width: 100vw;
+}
+.home-hero-quote {
+  position: absolute;
+  font-size: 3em;
+  top: 10%;
+  left: 10%;
+  color: #1e0e62;
+  width: 30px;
+}
+.home-hero-quote button {
+  background-color: #25dac5;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  width: 100px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.home-featured {
+  font-size: 3em;
+  color: #1e0e62;
+}
+.home-product-img {
+  cursor: pointer;
+  max-inline-size: 100%;
+  block-size: auto;
+  aspect-ratio: 2/1;
+  object-fit: cover;
+}
