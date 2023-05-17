@@ -1,8 +1,14 @@
 .home-hero-img {
-  width: 90%;
+  /* width: 90%;
   height: 700px;
   object-fit: cover;
-  object-position: right;
+  object-position: right; */
+  max-inline-size: 100%;
+  block-size: auto;
+  aspect-ratio: 2/1;
+  object-fit: cover;
+  width: 90%;
+  height: 700px;
 }
 .home-hero {
   position: relative;
@@ -29,4 +35,11 @@
 .home-featured {
   font-size: 3em;
   color: #1e0e62;
+}
+.home-product-img {
+  cursor: pointer;
+  max-inline-size: 100%;
+  block-size: auto;
+  aspect-ratio: 2/1;
+  object-fit: cover;
 }
