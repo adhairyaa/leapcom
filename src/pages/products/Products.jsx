@@ -23,7 +23,7 @@ function Products() {
     <div className="products-page">
       <div className="products-section">
         {products.map((product) => (
-          <ProductCard product={product} />
+          <ProductCard product={product} key={product._id} />
         ))}
       </div>
     </div>
