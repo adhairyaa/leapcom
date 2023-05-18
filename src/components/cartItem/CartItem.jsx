@@ -1,18 +1,19 @@
 import React, { useState } from "react";
 import "./CartItem.css";
 import { deleteCartItem, updateCart } from "../../services/cartServices";
+import { useCartContext } from "../../contexts/CartProvider";
 function CartItem({ product, quantity }) {
-  const [itemQuantity, setItemQuantity] = useState(quantity);
   const [isLoading, setIsLoading] = useState(false);
   const { name, price, img, _id } = product;
-  const totalPrice = price * itemQuantity;
+  const { dispatch } = useCartContext();
+  const totalPrice = price * quantity;
 
   const handleQuantityUpdate = async (quantity) => {
     setIsLoading(true);
     const res = await updateCart({ productId: _id, quantity });
     if (res.data.success) {
       setIsLoading(false);
-      setItemQuantity(quantity);
+      dispatch({ type: "UPDATE_CART", payload: { productId: _id, quantity } });
     }
   };
   console.log(isLoading);
@@ -26,16 +27,16 @@ function CartItem({ product, quantity }) {
       <div className="cart-item-quantity">
         <button
           className={isLoading ? "disabled" : ""}
-          onClick={() => handleQuantityUpdate(itemQuantity + 1)}
+          onClick={() => handleQuantityUpdate(quantity + 1)}
           disabled={isLoading}
         >
           +
         </button>
-        <p>{itemQuantity}</p>
+        <p>{quantity}</p>
         <button
-          className={isLoading || itemQuantity === 1 ? "disabled" : ""}
-          onClick={() => handleQuantityUpdate(itemQuantity - 1)}
-          disabled={isLoading || itemQuantity === 1}
+          className={isLoading || quantity === 1 ? "disabled" : ""}
+          onClick={() => handleQuantityUpdate(quantity - 1)}
+          disabled={isLoading || quantity === 1}
         >
           -
         </button>
