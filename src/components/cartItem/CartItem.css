@@ -17,3 +17,6 @@
   display: flex;
   align-items: center;
 }
+.disabled {
+  cursor: not-allowed !important;
+}
