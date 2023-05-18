@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "./Home.css";
 
 function Home() {
@@ -16,11 +17,13 @@ function Home() {
       </div>
       <div className="home-featured">
         <h2>Featured Collections</h2>
-        <img
-          src="https://leapcraft.dk/uploads/leapcraftproductfamilyx1.png"
-          className="home-product-img"
-          alt="product-img"
-        ></img>
+        <Link to="/products">
+          <img
+            src="https://leapcraft.dk/uploads/leapcraftproductfamilyx1.png"
+            className="home-product-img"
+            alt="product-img"
+          ></img>
+        </Link>
       </div>
     </div>
   );
