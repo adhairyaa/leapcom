@@ -7,15 +7,14 @@ import { useCartContext } from "../../contexts/CartProvider";
 function Cart() {
   const [isOrderPlaced, setIsOrderPlaced] = useState(false);
   const { productsInCart, isCartLoading } = useCartContext();
-  const calculateTotalPrice = () => {
-    let totalPrice = 0;
-    productsInCart.forEach(({ product, quantity }) => {
-      totalPrice += product.price * quantity;
-    });
-    return totalPrice;
-  };
+  let totalPrice = 0;
+  productsInCart?.forEach(({ product, quantity }) => {
+    totalPrice += product.price * quantity;
+  });
   return isCartLoading ? (
     <Loader />
+  ) : productsInCart.length === 0 ? (
+    <h1>Your Cart is Empty 🥺</h1>
   ) : (
     <div className="cart-page">
       <h1>Your Cart</h1>
@@ -31,7 +30,7 @@ function Cart() {
       ))}
 
       <div className="cart-page-total">
-        <p>{calculateTotalPrice()}</p>
+        <p>{totalPrice}</p>
         <button onClick={() => setIsOrderPlaced(true)}>Place Order</button>
       </div>
       {isOrderPlaced && <Toast />}

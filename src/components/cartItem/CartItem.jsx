@@ -7,16 +7,28 @@ function CartItem({ product, quantity }) {
   const { name, price, img, _id } = product;
   const { dispatch } = useCartContext();
   const totalPrice = price * quantity;
-
+  console.log(product, quantity);
   const handleQuantityUpdate = async (quantity) => {
     setIsLoading(true);
     const res = await updateCart({ productId: _id, quantity });
     if (res.data.success) {
       setIsLoading(false);
-      dispatch({ type: "UPDATE_CART", payload: { productId: _id, quantity } });
+      dispatch({
+        type: "UPDATE_QUANTITY",
+        payload: { productId: _id, quantity },
+      });
     }
   };
-  console.log(isLoading);
+
+  const handleItemDelete = async () => {
+    setIsLoading(true);
+    const res = await deleteCartItem(_id);
+    if (res.data.success) {
+      setIsLoading(false);
+      dispatch({ type: "DELETE_ITEM", payload: { productId: _id } });
+    }
+  };
+
   return (
     <div className="cart-items">
       <div className="cart-item-name">
@@ -43,7 +55,7 @@ function CartItem({ product, quantity }) {
       </div>
       <div>
         <p>{totalPrice}</p>
-        <button onClick={() => deleteCartItem(_id)}>X</button>
+        <button onClick={() => handleItemDelete()}>X</button>
       </div>
     </div>
   );
