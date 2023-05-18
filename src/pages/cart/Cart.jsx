@@ -1,23 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./Cart.css";
-import { getCart } from "../../services/cartServices";
 import Toast from "../../components/toast/Toast";
 import Loader from "../../components/loader/Loader";
 import CartItem from "../../components/cartItem/CartItem";
+import { useCartContext } from "../../contexts/CartProvider";
 function Cart() {
   const [isOrderPlaced, setIsOrderPlaced] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
-  const [cart, setCart] = useState();
-  useEffect(() => {
-    (async () => {
-      const response = await getCart();
-      setCart(response.data.data);
-      setIsLoading(false);
-      console.log(response);
-    })();
-  }, []);
-
-  return isLoading ? (
+  const { productsInCart, isCartLoading } = useCartContext();
+  const calculateTotalPrice = () => {
+    let totalPrice = 0;
+    productsInCart.forEach(({ product, quantity }) => {
+      totalPrice += product.price * quantity;
+    });
+    return totalPrice;
+  };
+  return isCartLoading ? (
     <Loader />
   ) : (
     <div className="cart-page">
@@ -28,12 +25,13 @@ function Cart() {
         <h3>quantity</h3>
         <h3>total</h3>
       </div>
-      {cart.map(({ productId, quantity }) => (
-        <CartItem product={productId} quantity={quantity} />
+      {console.log(productsInCart)}
+      {productsInCart.map(({ product, quantity }) => (
+        <CartItem product={product} quantity={quantity} />
       ))}
 
       <div className="cart-page-total">
-        <p>800</p>
+        <p>{calculateTotalPrice()}</p>
         <button onClick={() => setIsOrderPlaced(true)}>Place Order</button>
       </div>
       {isOrderPlaced && <Toast />}
