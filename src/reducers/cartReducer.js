@@ -4,7 +4,7 @@ export function CartReducer(state, action) {
       return (state = {
         ...state,
         productsInCart: state.productsInCart.map((item) => {
-          if (item.id === action.payload.id) {
+          if (item.product._id === action.payload.productId) {
             return {
               ...item,
               quantity: action.payload.quantity,
@@ -17,10 +17,10 @@ export function CartReducer(state, action) {
       return (state = {
         ...state,
         productsInCart: state.productsInCart.filter((item) => {
-          return item.id !== action.payload.id;
+          return item.product._id !== action.payload.productId;
         }),
       });
-    case "ADD_ITEM":
+    case "ADD_TO_CART":
       return (state = {
         ...state,
         productsInCart: [...state.productsInCart, action.payload],

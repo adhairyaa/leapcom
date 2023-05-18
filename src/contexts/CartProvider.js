@@ -1,10 +1,4 @@
-import {
-  createContext,
-  useContext,
-  useEffect,
-  useReducer,
-  useState,
-} from "react";
+import { createContext, useContext, useReducer } from "react";
 import { getCart } from "../services/cartServices";
 import { CartReducer } from "../reducers/cartReducer";
 
@@ -12,7 +6,7 @@ const CartContext = createContext();
 
 const CartProvider = ({ children }) => {
   const initialState = {
-    productsInCart: [],
+    productsInCart: null,
     isCartLoading: true,
   };
 
@@ -23,10 +17,9 @@ const CartProvider = ({ children }) => {
 
   const getData = async () => {
     const response = await getCart();
-    dispatch({ type: "INITIALIZE_CART", payload: response.data });
-    console.log(response);
+    dispatch({ type: "INITIALIZE_CART", payload: response.data.data });
   };
-  getData();
+  productsInCart === null && getData();
   return (
     <CartContext.Provider value={{ isCartLoading, productsInCart, dispatch }}>
       {children}
