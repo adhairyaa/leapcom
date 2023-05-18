@@ -8,11 +8,14 @@
   align-items: center;
   padding-right: 90px;
   background-color: white;
-  height: 50px;
+  height: 70px;
+  border-bottom: 2px solid lightgray;
 }
 
 .navbar-logo {
   font-size: 1.2em;
   color: #1e0e62;
   font-weight: 700;
+  text-decoration: none;
+  margin-right: 180px;
 }

@@ -12,7 +12,9 @@ function Home() {
         ></img>
         <div className="home-hero-quote">
           <h1> Feel Sustainable Peace</h1>
-          <button>Shop Now</button>
+          <Link to="/products">
+            <button>Shop Now</button>
+          </Link>
         </div>
       </div>
       <div className="home-featured">

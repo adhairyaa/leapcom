@@ -1,16 +1,22 @@
 import React, { useState } from "react";
 import "./Cart.css";
-import Toast from "../../components/toast/Toast";
 import Loader from "../../components/loader/Loader";
 import CartItem from "../../components/cartItem/CartItem";
 import { useCartContext } from "../../contexts/CartProvider";
 function Cart() {
-  const [isOrderPlaced, setIsOrderPlaced] = useState(false);
+  const [toastStatus, setTaustStatus] = useState("toast");
   const { productsInCart, isCartLoading } = useCartContext();
+
   let totalPrice = 0;
   productsInCart?.forEach(({ product, quantity }) => {
     totalPrice += product.price * quantity;
   });
+  const handleToast = () => {
+    setTaustStatus("show");
+    setTimeout(function () {
+      setTaustStatus("toast");
+    }, 5000);
+  };
   return isCartLoading ? (
     <Loader />
   ) : productsInCart.length === 0 ? (
@@ -19,21 +25,20 @@ function Cart() {
     <div className="cart-page">
       <h1>Your Cart</h1>
       <div className="cart-headings">
-        <h3>product</h3>
-        <h3>price</h3>
-        <h3>quantity</h3>
-        <h3>total</h3>
+        <h4>product</h4>
+        <h4>price</h4>
+        <h4>quantity</h4>
+        <h4>total</h4>
       </div>
-      {console.log(productsInCart)}
       {productsInCart.map(({ product, quantity }) => (
-        <CartItem product={product} quantity={quantity} />
+        <CartItem product={product} quantity={quantity} key={product._id} />
       ))}
 
       <div className="cart-page-total">
-        <p>{totalPrice}</p>
-        <button onClick={() => setIsOrderPlaced(true)}>Place Order</button>
+        <p>${totalPrice}</p>
+        <button onClick={() => handleToast()}>Place Order</button>
+        <div className={toastStatus}>order has been placed</div>
       </div>
-      {isOrderPlaced && <Toast />}
     </div>
   );
 }

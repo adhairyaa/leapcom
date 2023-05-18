@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useCartContext } from "../../contexts/CartProvider";
 import { updateCart } from "../../services/cartServices";
-
+import "./ProductCard.css";
 function ProductCard({ product }) {
   const { dispatch, productsInCart } = useCartContext();
   const isProductInCart =
@@ -31,7 +31,7 @@ function ProductCard({ product }) {
         </div>
         {isProductInCart ? (
           <Link to="/cart">
-            <button className="add-to-cart">Go to cart</button>
+            <button className="go-to-cart">Go to cart</button>
           </Link>
         ) : (
           <button className="add-to-cart" onClick={handleAddToCart}>

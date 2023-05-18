@@ -19,4 +19,27 @@
 }
 .disabled {
   cursor: not-allowed !important;
+  background-color: white;
+}
+.cart-items {
+  border-bottom: 1px solid lightgray;
+  margin: 20px;
+  padding: 20px;
+}
+.cart-item-remove {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.cart-item-remove button {
+  background-color: #1e0e62;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 10px;
+  cursor: pointer;
+  margin-left: 20px;
+}
+.quantity-btn {
+  background-color: aliceblue;
 }
