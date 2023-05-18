@@ -1,8 +1,10 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { getProducts } from "../../services/productServices";
 import "./Products.css";
 import Loader from "../../components/loader/Loader";
+import { updateCart } from "../../services/cartServices";
+import { useCartContext } from "../../contexts/CartProvider";
+import ProductCard from "../../components/productCard/ProductCard";
 function Products() {
   const [products, setProducts] = useState();
   const [isLoading, setIsLoading] = useState(true);
@@ -14,7 +16,6 @@ function Products() {
       setIsLoading(false);
     })();
   }, []);
-  console.log(products);
 
   return isLoading ? (
     <Loader />
@@ -22,16 +23,7 @@ function Products() {
     <div className="products-page">
       <div className="products-section">
         {products.map((product) => (
-          <div className="product-card">
-            <img src={product.img} alt="product-img"></img>
-            <div className="product-card-options">
-              <div className="product-card-details">
-                <p>{product.name}</p>
-                <p>{product.price}</p>
-              </div>
-              <button className="add-to-cart">Add to Cart</button>
-            </div>
-          </div>
+          <ProductCard product={product} />
         ))}
       </div>
     </div>

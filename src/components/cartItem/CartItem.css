@@ -1,0 +1,22 @@
+.cart-items {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 90%;
+  align-items: center;
+}
+.cart-item-name img {
+  width: 60px;
+  height: 60px;
+}
+.cart-item-name {
+  display: flex;
+  align-items: center;
+}
+.cart-item-quantity {
+  display: flex;
+  align-items: center;
+}
+.disabled {
+  cursor: not-allowed !important;
+}
