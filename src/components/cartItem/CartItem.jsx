@@ -7,7 +7,7 @@ function CartItem({ product, quantity }) {
   const { name, price, img, _id } = product;
   const { dispatch } = useCartContext();
   const totalPrice = price * quantity;
-  console.log(product, quantity);
+
   const handleQuantityUpdate = async (quantity) => {
     setIsLoading(true);
     const res = await updateCart({ productId: _id, quantity });
@@ -35,10 +35,10 @@ function CartItem({ product, quantity }) {
         <img src={img} alt={name} />
         <p>{name}</p>
       </div>
-      <p>{price}</p>
+      <p>${price}</p>
       <div className="cart-item-quantity">
         <button
-          className={isLoading ? "disabled" : ""}
+          className={isLoading ? "disabled" : "quantity-btn"}
           onClick={() => handleQuantityUpdate(quantity + 1)}
           disabled={isLoading}
         >
@@ -46,15 +46,15 @@ function CartItem({ product, quantity }) {
         </button>
         <p>{quantity}</p>
         <button
-          className={isLoading || quantity === 1 ? "disabled" : ""}
+          className={isLoading || quantity === 1 ? "disabled" : "quantity-btn"}
           onClick={() => handleQuantityUpdate(quantity - 1)}
           disabled={isLoading || quantity === 1}
         >
           -
         </button>
       </div>
-      <div>
-        <p>{totalPrice}</p>
+      <div className="cart-item-remove">
+        <p>${totalPrice}</p>
         <button onClick={() => handleItemDelete()}>X</button>
       </div>
     </div>
