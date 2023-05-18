@@ -1,17 +1,25 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./Cart.css";
 import { getCart } from "../../services/cartServices";
+import Toast from "../../components/toast/Toast";
+import Loader from "../../components/loader/Loader";
+import CartItem from "../../components/cartItem/CartItem";
 function Cart() {
+  const [isOrderPlaced, setIsOrderPlaced] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [cart, setCart] = useState();
   useEffect(() => {
     (async () => {
       const response = await getCart();
-      //   setProducts(response.data.data);
-      //   setIsLoading(false);
+      setCart(response.data.data);
+      setIsLoading(false);
       console.log(response);
     })();
   }, []);
 
-  return (
+  return isLoading ? (
+    <Loader />
+  ) : (
     <div className="cart-page">
       <h1>Your Cart</h1>
       <div className="cart-headings">
@@ -20,23 +28,15 @@ function Cart() {
         <h3>quantity</h3>
         <h3>total</h3>
       </div>
-      <div className="cart-items">
-        <div className="cart-item-name">
-          <img src="https://cdn.shopify.com/s/files/1/0275/7361/6751/products/AirBird_Product_736x480.jpg?v=1637580490"></img>
-          <p>Bird eye</p>
-        </div>
-        <p>800</p>
-        <div className="cart-item-quantity">
-          <button>+</button>
-          <p>1</p>
-          <button>-</button>
-        </div>
-        <p>800</p>
-      </div>
+      {cart.map(({ productId, quantity }) => (
+        <CartItem product={productId} quantity={quantity} />
+      ))}
+
       <div className="cart-page-total">
         <p>800</p>
-        <button>Place Order</button>
+        <button onClick={() => setIsOrderPlaced(true)}>Place Order</button>
       </div>
+      {isOrderPlaced && <Toast />}
     </div>
   );
 }
