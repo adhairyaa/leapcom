@@ -1,14 +1,10 @@
 .home-hero-img {
-  /* width: 90%;
-  height: 700px;
-  object-fit: cover;
-  object-position: right; */
   max-inline-size: 100%;
   block-size: auto;
   aspect-ratio: 2/1;
   object-fit: cover;
   width: 90%;
-  height: 700px;
+  height: 650px;
 }
 .home-hero {
   position: relative;
@@ -16,11 +12,12 @@
 }
 .home-hero-quote {
   position: absolute;
-  font-size: 3em;
+  font-size: 3vw;
   top: 10%;
   left: 10%;
   color: #1e0e62;
-  width: 30px;
+  width: 40%;
+  text-align: left;
 }
 .home-hero-quote button {
   background-color: #25dac5;
@@ -33,7 +30,7 @@
 }
 
 .home-featured {
-  font-size: 3em;
+  font-size: 3vw;
   color: #1e0e62;
 }
 .home-product-img {
