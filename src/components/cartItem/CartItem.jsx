@@ -9,23 +9,31 @@ function CartItem({ product, quantity }) {
   const totalPrice = price * quantity;
 
   const handleQuantityUpdate = async (quantity) => {
-    setIsLoading(true);
-    const res = await updateCart({ productId: _id, quantity });
-    if (res.data.success) {
-      setIsLoading(false);
-      dispatch({
-        type: "UPDATE_QUANTITY",
-        payload: { productId: _id, quantity },
-      });
+    try {
+      setIsLoading(true);
+      const res = await updateCart({ productId: _id, quantity });
+      if (res.data.success) {
+        setIsLoading(false);
+        dispatch({
+          type: "UPDATE_QUANTITY",
+          payload: { productId: _id, quantity },
+        });
+      }
+    } catch (err) {
+      console.log(err);
     }
   };
 
   const handleItemDelete = async () => {
-    setIsLoading(true);
-    const res = await deleteCartItem(_id);
-    if (res.data.success) {
-      setIsLoading(false);
-      dispatch({ type: "DELETE_ITEM", payload: { productId: _id } });
+    try {
+      setIsLoading(true);
+      const res = await deleteCartItem(_id);
+      if (res.data.success) {
+        setIsLoading(false);
+        dispatch({ type: "DELETE_ITEM", payload: { productId: _id } });
+      }
+    } catch (err) {
+      console.log(err);
     }
   };
 

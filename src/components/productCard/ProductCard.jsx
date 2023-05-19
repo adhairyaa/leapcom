@@ -3,21 +3,29 @@ import { useCartContext } from "../../contexts/CartProvider";
 import { updateCart } from "../../services/cartServices";
 import "./ProductCard.css";
 function ProductCard({ product }) {
-  const { dispatch, productsInCart } = useCartContext();
-  const isProductInCart =
-    productsInCart.filter((item) => item.product._id === product._id).length !==
-    0;
-  const handleAddToCart = async () => {
-    const res = await updateCart({
-      productId: product._id,
-      quantity: 1,
-    });
+  const { dispatch, productsInCart, isCartLoading } = useCartContext();
+  let isProductInCart;
+  if (!isCartLoading) {
+    isProductInCart =
+      productsInCart.filter((item) => item.product._id === product._id)
+        .length !== 0;
+  }
 
-    if (res.data.success) {
-      dispatch({
-        type: "ADD_TO_CART",
-        payload: { product: product, quantity: 1 },
+  const handleAddToCart = async () => {
+    try {
+      const res = await updateCart({
+        productId: product._id,
+        quantity: 1,
       });
+
+      if (res.data.success) {
+        dispatch({
+          type: "ADD_TO_CART",
+          payload: { product: product, quantity: 1 },
+        });
+      }
+    } catch (err) {
+      console.log(err);
     }
   };
 

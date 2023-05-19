@@ -2,18 +2,30 @@ import axios from "axios";
 import { backendURL } from "../constants";
 
 async function getCart() {
-  const response = await axios.get(`${backendURL}/cart`);
-  return response;
+  try {
+    const response = await axios.get(`${backendURL}/cart`);
+    return response;
+  } catch (err) {
+    console.log(err);
+  }
 }
 async function updateCart(product) {
-  const res = await axios.post(`${backendURL}/cart`, product);
-  return res;
+  try {
+    const res = await axios.post(`${backendURL}/cart`, product);
+    return res;
+  } catch (err) {
+    console.log(err);
+  }
 }
 async function deleteCartItem(productId) {
-  const res = await axios.delete(`${backendURL}/cart`, {
-    data: { productId },
-  });
-  return res;
+  try {
+    const res = await axios.delete(`${backendURL}/cart`, {
+      data: { productId },
+    });
+    return res;
+  } catch (err) {
+    console.log(err);
+  }
 }
 
 export { getCart, updateCart, deleteCartItem };

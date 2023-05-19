@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 import { getProducts } from "../../services/productServices";
 import "./Products.css";
 import Loader from "../../components/loader/Loader";
-import { updateCart } from "../../services/cartServices";
-import { useCartContext } from "../../contexts/CartProvider";
 import ProductCard from "../../components/productCard/ProductCard";
 function Products() {
   const [products, setProducts] = useState();
@@ -11,9 +9,13 @@ function Products() {
 
   useEffect(() => {
     (async () => {
-      const response = await getProducts();
-      setProducts(response.data.data);
-      setIsLoading(false);
+      try {
+        const response = await getProducts();
+        setProducts(response.data.data);
+        setIsLoading(false);
+      } catch (err) {
+        console.log(err);
+      }
     })();
   }, []);
 

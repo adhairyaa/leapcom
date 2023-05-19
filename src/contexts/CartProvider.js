@@ -16,8 +16,12 @@ const CartProvider = ({ children }) => {
   );
 
   const getData = async () => {
-    const response = await getCart();
-    dispatch({ type: "INITIALIZE_CART", payload: response.data.data });
+    try {
+      const response = await getCart();
+      dispatch({ type: "INITIALIZE_CART", payload: response.data.data });
+    } catch (err) {
+      console.log(err);
+    }
   };
   productsInCart === null && getData();
   return (
