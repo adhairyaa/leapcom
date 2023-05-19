@@ -1,0 +1,30 @@
+.product-card {
+  display: flex;
+  flex-direction: column;
+  width: 450px;
+}
+.product-card-options {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.add-to-cart {
+  background-color: #25dac5;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  width: 100px;
+  padding: 10px;
+  cursor: pointer;
+}
+.go-to-cart {
+  background-color: #1e0e62;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  width: 100px;
+  padding: 10px;
+  cursor: pointer;
+}
