@@ -14,7 +14,8 @@ A responsive, interactive and optinmized webapp
 * Product Listing
 * Update Cart Quantity
 * Remove Cart Item
-* Backend
+* Backend (Product & Cart services)
+* Database
 
 
 ## Tech Stack
