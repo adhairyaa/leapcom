@@ -21,7 +21,7 @@ function Home() {
         <h2>Featured Collections</h2>
         <Link to="/products">
           <img
-            src="https://leapcraft.dk/uploads/leapcraftproductfamilyx1.png"
+            src="https://i0.wp.com/leapcraft.com/wp-content/uploads/2021/06/leapcraftproductfamilyx1.png?w=773&ssl=1"
             className="home-product-img"
             alt="product-img"
           ></img>
